@@ -1,105 +1,127 @@
-/* General Styles */
-section {
-    padding: 20px;
-    margin: 20px 0;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.bg-success {
+    background-color: #071c07 !important; /* Forest Green */
+}
+
+.text-yellow {
+    color: #FFD700 !important; /* Yellow-Gold */
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+    position: relative;
+  z-index: 2;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #FFD700; /* Yellow-Gold */
+}
+
+h1 {
+    color: #fff;
 }
 
 h2 {
     color: #071c07; /* Forest Green */
 }
 
-/* Welcome Section */
-#welcome {
-    background-color: #f4f4f4;
-    text-align: center;
+.btn-outline-success {
+    border-color: #071c07;
+    color: #071c07;
 }
 
-#welcome p {
-    color: #000; /* Black */
-    font-size: 18px;
+.btn-outline-success:hover {
+    background-color: #071c07;
+    color: #fff;
 }
 
-/* Photo Gallery */
-#gallery {
-    text-align: center;
-}
-
-.photo-gallery {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.photo-gallery img {
-    margin: 10px;
-    max-width: 30%;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Social Media Links */
-#social-media {
-    text-align: center;
-}
-
-.social-links a {
-    display: inline-block;
-    margin: 0 10px;
-    color: #FFD700; /* Yellow-Gold */
-    font-size: 20px;
-    text-decoration: none;
-}
-
-.social-links a:hover {
+.card-title {
     color: #071c07; /* Forest Green */
 }
 
-/* Header */
-header {
-    background-color: #071c07; /* Forest Green */
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
+.card-text {
+    color: #000; /* Black */
 }
 
-header nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-header nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-header nav ul li a:hover {
-    color: #FFD700; /* Yellow-Gold */
-}
-
-/* Footer */
-footer {
-    background-color: #000; /* Black */
-    color: #FFD700; /* Yellow-Gold */
-    text-align: center;
-    padding: 10px 0;
-    position: fixed;
+.jumbotron {
+    margin-bottom: 0;
+    padding: 4rem 2rem;
+    background-size: cover;
+    background-position: center;
     width: 100%;
-    bottom: 0;
+    height: 100vh; /* Full screen height */
+    position: relative;
+    color: white;
 }
 
-p {
-    color: #000; /* Black */
+.jumbotron::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: 1;
 }
 
-a {
-    color: #071c07; /* Forest Green */
+.jumbotron .container {
+    position: relative;
+    z-index: 2;
 }
 
-a:hover {
-    color: #FFD700; /* Yellow-Gold */
+.jumbotron .display-4 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.jumbotron .lead {
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.animated-text {
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.feature-icon-small {
+    width: 50px;
+    height: 50px;
+    background-color: #071c07; /* Background color */
+    border-radius: 25%; /* Rounded corners */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px; /* Padding outside the SVG */
+    margin-right: 10px; /* Space between icon and text */
+}
+
+.logo-circle {
+    width: 50px; /* Adjust the size as needed */
+    height: 50px; /* Adjust the size as needed */
+    border-radius: 50%;
+    /* position: absolute;
+    top: 10px; 
+    left: 10px;  */
+    
+    background-color: white; /* Optional: To give it a background color if needed */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: To give it a slight shadow */
+}
+
+.footer-logo {
+    filter: invert(77%) sepia(65%) saturate(744%) hue-rotate(357deg) brightness(101%) contrast(105%);
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
 }

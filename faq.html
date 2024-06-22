@@ -3,31 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ - Forest Hills Runners</title>
+    <title>Forest Hills Runners - FAQ</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header>
-        <h1>Forest Hills Runners</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="routes.html">Running Routes</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+    <!-- <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/logo.png" alt="Forest Hills Runners Logo" class="logo-circle">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+                        <li class="nav-item"><a class="nav-link" href="routes.html">Running Routes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
-    </header>
-    <main>
-        <h2>FAQ</h2>
-        <p>Frequently Asked Questions</p>
-        <!-- Add FAQ content here -->
+    </header> -->
+    <section id="hero" class="text-center mb-5">
+        <div class="jumbotron d-flex align-items-center" style="background-image: url('images/hero-background.jpg'); background-size: cover; background-position: center; color: white; background-attachment: fixed; height: 40vh;">
+            <div class="container text-white animated-text">
+                <h1 class="display-4 mt-5">Frequently Asked Questions</h1>
+            </div>
+        </div>
+    </section>
+    <main class="container mt-5">
+        
+        
+
+        <section id="faq" class="mb-5">
+            <div class="accordion" id="faqAccordion">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                What is Forest Hills Runners?
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#faqAccordion">
+                        <div class="card-body">
+                            Forest Hills Runners is a community running group based in Jamaica Plain, MA. We bring together runners of all levels for social runs, track workouts, and long endurance runs.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                How do I join a run?
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#faqAccordion">
+                        <div class="card-body">
+                            Joining a run is easy! Simply check our schedule for the next run and show up at the designated meeting spot. There’s no need to register or sign up in advance.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Are there any membership fees?
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#faqAccordion">
+                        <div class="card-body">
+                            No, Forest Hills Runners is completely free to join. We believe in making running accessible to everyone.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Add more FAQ items as needed -->
+
+            </div>
+        </section>
     </main>
-    <footer>
-        <p>&copy; 2024 Forest Hills Runners. All rights reserved.</p>
-    </footer>
+
+    <!-- <footer class="bg-dark text-yellow text-center py-3">
+        <p class="mb-0">&copy; 2024 Forest Hills Runners. All rights reserved.</p>
+    </footer> -->
+    
+
+    <script src="js/header_footer.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
 </body>
 </html>
