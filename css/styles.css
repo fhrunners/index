@@ -1,12 +1,62 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+/* General Styles */
+section {
+    padding: 20px;
+    margin: 20px 0;
 }
 
+h2 {
+    color: #071c07; /* Forest Green */
+}
+
+/* Welcome Section */
+#welcome {
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+#welcome p {
+    color: #000; /* Black */
+    font-size: 18px;
+}
+
+/* Photo Gallery */
+#gallery {
+    text-align: center;
+}
+
+.photo-gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.photo-gallery img {
+    margin: 10px;
+    max-width: 30%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Social Media Links */
+#social-media {
+    text-align: center;
+}
+
+.social-links a {
+    display: inline-block;
+    margin: 0 10px;
+    color: #FFD700; /* Yellow-Gold */
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    color: #071c07; /* Forest Green */
+}
+
+/* Header */
 header {
-    background-color: #333;
+    background-color: #071c07; /* Forest Green */
     color: #fff;
     padding: 10px 0;
     text-align: center;
@@ -27,17 +77,29 @@ header nav ul li a {
     text-decoration: none;
 }
 
-main {
-    padding: 20px;
-    text-align: center;
+header nav ul li a:hover {
+    color: #FFD700; /* Yellow-Gold */
 }
 
+/* Footer */
 footer {
-    background-color: #333;
-    color: #fff;
+    background-color: #000; /* Black */
+    color: #FFD700; /* Yellow-Gold */
     text-align: center;
     padding: 10px 0;
     position: fixed;
     width: 100%;
     bottom: 0;
+}
+
+p {
+    color: #000; /* Black */
+}
+
+a {
+    color: #071c07; /* Forest Green */
+}
+
+a:hover {
+    color: #FFD700; /* Yellow-Gold */
 }
