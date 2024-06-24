@@ -125,3 +125,16 @@ html, body {
     max-width: 100%;
     overflow-x: hidden;
 }
+
+@media (hover: none) {
+    .background-fixed {
+        background-attachment: initial;
+    }
+ }
+ 
+ @media (pointer: coarse) {
+    .background-fixed {
+        background-attachment: initial;
+    }
+ }
+ 
