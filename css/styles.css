@@ -56,6 +56,9 @@ h2 {
     height: 100vh; /* Full screen height */
     position: relative;
     color: white;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
 }
 
 .jumbotron::before {
@@ -67,6 +70,10 @@ h2 {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
     z-index: 1;
+}
+
+.jumbotron::after {
+    position: fixed;
 }
 
 .jumbotron .container {
@@ -128,14 +135,19 @@ html, body {
 
 @media (hover: none) {
     .background-fixed {
-        background-attachment: initial;
+        background-attachment: scroll;
     }
  }
  
  @media (pointer: coarse) {
     .background-fixed {
-        background-attachment: initial;
+        background-attachment: scroll;
     }
  }
  
+ @media only screen and (max-device-width: 1366px) {
+    .jumbotron {
+      background-attachment: scroll;
+    }
+  }
  
