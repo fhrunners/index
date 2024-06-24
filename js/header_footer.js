@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+                        <li class="nav-item"><a class="nav-link" href="run-with-us.html">Run With Us</a></li>
                         <li class="nav-item"><a class="nav-link" href="routes.html">Running Routes</a></li>
                         <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
                         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
