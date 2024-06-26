@@ -4,7 +4,7 @@ body {
 }
 
 .bg-success {
-    background-color: #071c07 !important; /* Forest Green */
+    background-color: #092409 !important; /* Forest Green */
 }
 
 .text-yellow {
@@ -26,21 +26,21 @@ h1 {
 }
 
 h2 {
-    color: #071c07; /* Forest Green */
+    color: #092409; /* Forest Green */
 }
 
 .btn-outline-success {
-    border-color: #071c07;
-    color: #071c07;
+    border-color: #092409;
+    color: #092409;
 }
 
 .btn-outline-success:hover {
-    background-color: #071c07;
+    background-color: #092409;
     color: #fff;
 }
 
 .card-title {
-    color: #071c07; /* Forest Green */
+    color: #092409; /* Forest Green */
 }
 
 .card-text {
@@ -107,7 +107,7 @@ h2 {
 .feature-icon-small {
     width: 50px;
     height: 50px;
-    background-color: #071c07; /* Background color */
+    background-color: #0e300e; /* Background color */
     border-radius: 25%; /* Rounded corners */
     display: flex;
     align-items: center;
@@ -137,6 +137,14 @@ html, body {
     overflow-x: hidden;
 }
 
+.about-carousel {
+    max-width: min(max(50vh, 33vw), 90vw)
+}
+.carousel-image {
+    height: min(50vh, 90vw);
+    object-fit: cover;
+}
+
 @media (hover: none) {
     .background-fixed {
         background-attachment: scroll;
@@ -155,3 +163,30 @@ html, body {
     }
   }
  
+  .btn-primary {
+    background-color: #092409; /* Forest green */
+    border-color: #092409; /* Forest green */
+    color: #fff; /* Yellow-gold text */
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open>.dropdown-toggle.btn-primary {
+    background-color: #054d04; /* Darker green for hover/active states */
+    border-color: #054d04; /* Darker green for hover/active states */
+    color: #fff; /* Yellow-gold text */
+}
+
+.btn-primary:focus,
+.btn-primary.focus {
+    box-shadow: 0 0 0 0.2rem rgba(7, 28, 7, 0.5); /* Green shadow */
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+    background-color: #092409; /* Forest green */
+    border-color: #092409; /* Forest green */
+    color: #FFD700; /* Yellow-gold text */
+}

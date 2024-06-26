@@ -22,9 +22,7 @@
     <section id="hero" class="d-flex align-items-center justify-content-center mb-5">
         <div class="container text-center">
             <h2 class="display-4">Come run with us!</h2>
-            <p class="lead">Founded in April of 2011, Forest Hills Runners is a running group based in Jamaica Plain, MA. It's community running at its best, bringing people together from all across JP. It's for Olympians and life-long runners, and it's for people who have never run a step in their lives but would love to meet others and give running a try.
-                
-            </p><p class="lead">Our first run together was on Tuesday April 26th, 2011. We continue to run strong.</p>
+            <p class="lead">Founded in April 2011, Forest Hills Runners is a vibrant running community based in Jamaica Plain, MA. We welcome everyone, from seasoned athletes to those new to running, fostering connections across the neighborhood. Our first run was on April 26th, 2011, and we've been running strong ever since.</p>
             <!-- <a href="#features" class="btn btn-primary btn-lg">Learn More</a> -->
         </div>
     </section>
@@ -89,9 +87,9 @@
                     <img src="images/social_run_icon.svg" class="feature-icon-small" alt="Monday Social Run Icon">
                 </div>
                 <div>
-                    <h3 class="fs-2 text-body-emphasis">Monday Social Run</h3>
+                    <h3 class="fs-2 text-body-emphasis">Monday Social / Recovery Run</h3>
                     <h6>6:30PM at the <a href="https://maps.app.goo.gl/9ZQm8HHwF1TW84517" target="_blank">Forest Hills Bike Rotary</a></h6>
-                    <p>Join us for a relaxed social run every Monday evening through the SW Corridor and around Jamaica Pond!</p>
+                    <p>Join us for a relaxed social / recovery run every Monday evening through the SW Corridor and around Jamaica Pond!</p>
                 </div>
             </div>
             <div class="col d-flex align-items-start">
@@ -99,8 +97,8 @@
                     <img src="images/track_icon.svg" class="feature-icon-small" alt="Thursday Track Icon">
                 </div>
                 <div>
-                    <h3 class="fs-2 text-body-emphasis">Thursday Track</h3>
-                    <h6>7PM at the <a href="https://maps.app.goo.gl/9yW8bBfPVHkCtaKB6" target="_blank">Downes Field Track</a></h6>
+                    <h3 class="fs-2 text-body-emphasis">Thursday Track Night</h3>
+                    <h6>7PM at the <a href="https://maps.app.goo.gl/9yW8bBfPVHkCtaKB6" target="_blank">Downes Field Track</a> (Winter: 7:30PM at the <a href="https://maps.app.goo.gl/xJ1eSZQ9a13oZzMR8" target="_blank">Reggie Lewis Center</a>)</h6>
                     <p>Improve your speed and technique with our Thursday track nights!</p>
                 </div>
             </div>
@@ -109,24 +107,28 @@
                     <img src="images/long_run_icon.svg" class="feature-icon-small" alt="Saturday Long Run Icon">
                 </div>
                 <div>
-                    <h3 class="fs-2 text-body-emphasis">Saturday Long Run</h3>
+                    <h3 class="fs-2 text-body-emphasis">The Saturday Run</h3>
                     <h6>8:30AM at the <a href="https://maps.app.goo.gl/9ZQm8HHwF1TW84517" target="_blank">Forest Hills Bike Rotary</a></h6>
-                    <p>Join us for a long run every Saturday morning, followed by coffee (and ice cream!) at J.P. Licks!</p>
+                    <p>Join us for a run every Saturday morning, followed by coffee (and ice cream!) at J.P. Licks!</p>
                 </div>
             </div>
         </div>
         <div class="text-center mt-1">
-            <a href="routes.html" class="btn btn-primary btn-lg">Learn About Our Routes</a>
+            <a href="run-with-us.html" class="btn btn-primary btn-lg">Learn About Our Runs</a>
         </div>
     </div>
     
     
     <div class="container px-4 py-5" id="instagram-section">
-        <h2 class="pb-2 border-bottom">Follow Us on Instagram</h2>
+        <h2 class="pb-2 border-bottom">Find Us on Instagram</h2>
         <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/fhrunners/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px auto; max-width:90vw; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
         </blockquote>
         <script async src="//www.instagram.com/embed.js"></script>
+        <noscript>
+            <p>Instagram feed could not be loaded. Please visit our <a href="https://www.instagram.com/fhrunners/" target="_blank">Instagram page</a>.</p>
+        </noscript>
     </div>
+    
         
 
 
@@ -170,5 +172,16 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var instagramSection = document.querySelector('#instagram-section blockquote');
+            setTimeout(function() {
+                if (instagramSection.innerHTML.trim() === '') {
+                    instagramSection.innerHTML = '<p>Instagram feed could not be loaded. Please visit our <a href="https://www.instagram.com/fhrunners/" target="_blank">Instagram page</a>.</p>';
+                }
+            }, 5000); // Wait 5 seconds to check if the Instagram content has loaded
+        });
+    </script>
+    
 </body>
 </html>
