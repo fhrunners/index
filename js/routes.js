@@ -94,14 +94,9 @@ document.addEventListener("DOMContentLoaded", function() {
             maxZoom: 20
         });
 
-        const stadiaAlidadeSatellite = L.tileLayer("https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}{r}.jpg", {
-            attribution: '&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
-            maxZoom: 20
-        });
-
-        const stadiaWatercolor = L.tileLayer("https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg", {
-            attribution: '&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
-            maxZoom: 16
+        const esriWorldImagery = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+            attribution: "Tiles &copy; Esri",
+            maxZoom: 19
         });
 
         // Default basemap
@@ -110,8 +105,7 @@ document.addEventListener("DOMContentLoaded", function() {
         L.control.layers({
             "Voyager": cartoVoyager,
             "Positron": cartoPositron,
-            "Satellite": stadiaAlidadeSatellite,
-            "Watercolor": stadiaWatercolor
+            "Satellite": esriWorldImagery
         }, null, {
             collapsed: true,
             position: "topright"
