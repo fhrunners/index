@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#092409">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <link rel="manifest" href="../site.webmanifest">
+    <title>Forest Hills Runners - Running Routes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIINfQ+7kYVqWozp0Yj8dN2fCJ93U8ZwKp1U="
+        crossorigin="">
+    <link rel="stylesheet" href="../css/styles.css?v=routes-ui-v3">
+</head>
+<body>
+    <section id="hero" class="text-center mb-5">
+        <div class="jumbotron d-flex align-items-center background-fixed parallax" style="background-image: url('../images/hero-background.jpg'); background-size: cover; background-position: center; color: white; height: 40vh;">
+            <div class="container text-white animated-text">
+                <h1 class="display-4 mt-5">Running Routes</h1>
+            </div>
+        </div>
+    </section>
+
+    <main class="routes-page">
+        <section class="routes-content container" aria-label="Interactive running routes">
+            <div class="routes-map-intro">
+                <div>
+                    <span class="routes-map-label">Interactive map</span>
+                    <p>Check out our weekly running routes, plus some of our other favorite runs in the area.</p>
+                </div>
+                <button type="button" id="toggle-route-pois" class="map-toggle-button" aria-pressed="true">
+                    <span class="map-toggle-switch" aria-hidden="true"><span></span></span>
+                    <span>Points of interest</span>
+                </button>
+            </div>
+
+            <div class="post-thumbnail route-map-frame">
+                <div id="route-map" class="route-map" aria-label="Forest Hills Runners route map"></div>
+            </div>
+
+            <div class="routes-toolbar" aria-label="Route map controls">
+                <span id="route-status">Loading routes...</span>
+                <div>
+                    <button type="button" class="btn btn-sm btn-outline-success" id="show-all-routes">Show all routes</button>
+                    <button type="button" class="btn btn-sm btn-outline-success" id="hide-all-routes">Hide all routes</button>
+                </div>
+            </div>
+
+            <div id="map-routes" class="map-routes" aria-live="polite"></div>
+        </section>
+    </main>
+
+    <script src="../js/header_footer.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+    <script src="../js/routes.js?v=routes-ui-v3"></script>
+    <script src="../js/scripts.js"></script>
+</body>
+</html>

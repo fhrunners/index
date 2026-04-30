@@ -1,25 +1,17 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Load the CSV file and create the FAQ section
-    fetch('faqs.csv')
-        .then(response => response.text())
-        .then(csvText => {
-            const faqs = parseCSV(csvText);
+    const pathParts = window.location.pathname.split('/').filter(Boolean);
+    const currentSection = pathParts[pathParts.length - 1] === 'index.html'
+        ? pathParts[pathParts.length - 2]
+        : pathParts[pathParts.length - 1];
+    const sitePrefix = currentSection === 'faq' ? '../' : '';
+
+    // Load the FAQ data and create the FAQ section
+    fetch(sitePrefix + 'faqs.json')
+        .then(response => response.json())
+        .then(faqs => {
             createFAQSection(faqs);
         })
-        .catch(error => console.error('Error fetching the CSV file:', error));
-
-    function parseCSV(csvText) {
-        const lines = csvText.trim().split('\n');
-        const headers = lines[0].split('|');
-        const faqs = lines.slice(1).map(line => {
-            const data = line.split('|');
-            return {
-                question: data[0],
-                answer: data[1]
-            };
-        });
-        return faqs;
-    }
+        .catch(error => console.error('Error fetching the FAQ data:', error));
 
     function createFAQSection(faqs) {
         const faqAccordion = document.getElementById('faqAccordion');

@@ -1,0 +1,47 @@
+[
+  {
+    "id": "forest-hills-bike-rotary",
+    "name": "Forest Hills Bike Rotary",
+    "description": "Meeting point for Monday and Saturday runs",
+    "lat": 42.301952292661106,
+    "lng": -71.11363336364725,
+    "color": "#092409",
+    "fillColor": "#ffd700"
+  },
+  {
+    "id": "jp-licks",
+    "name": "J.P. Licks",
+    "description": "Saturday run endpoint; stick around for coffee and post-run chatting!",
+    "lat": 42.312816094713284,
+    "lng": -71.11427135608741,
+    "color": "#092409",
+    "fillColor": "#ffd700"
+  },
+  {
+    "id": "jp-boathouse",
+    "name": "Jamaica Pond Boathouse",
+    "description": "Tuesday runs start and end here; Monday runs finish here",
+    "lat": 42.3156743951295,
+    "lng": -71.1175234568792,
+    "color": "#092409",
+    "fillColor": "#ffd700"
+  },
+  {
+    "id": "reggie-lewis-track",
+    "name": "Reggie Lewis Track",
+    "description": "Winter Thursday track workout location",
+    "lat": 42.33163379746455,
+    "lng": -71.0936261472536,
+    "color": "#092409",
+    "fillColor": "#ffd700"
+  },
+  {
+    "id": "downes-field",
+    "name": "Downes Field",
+    "description": "Outdoor non-winter Thursday track workout location; meet by the picnic tables!",
+    "lat": 42.32397427099334,
+    "lng": -71.11918865029048,
+    "color": "#092409",
+    "fillColor": "#ffd700"
+  }
+]
