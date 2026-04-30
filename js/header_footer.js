@@ -87,4 +87,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Append the footer to the body
     document.body.appendChild(footer);
+
+    // GoatCounter analytics
+    var goatCounterScript = document.createElement('script');
+    goatCounterScript.setAttribute('data-goatcounter', 'https://fhrunners.goatcounter.com/count');
+    goatCounterScript.async = true;
+    goatCounterScript.src = '//gc.zgo.at/count.js';
+    document.head.appendChild(goatCounterScript);
 });
