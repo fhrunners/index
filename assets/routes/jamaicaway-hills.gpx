@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Forest Hills Runners" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata>
+    <name>Jamaicaway Hill Repeats</name>
+  </metadata>
+  <trk>
+    <name>Jamaicaway Hill Repeats</name>
+    <trkseg>
+      <trkpt lat="42.32313" lon="-71.11605"></trkpt>
+      <trkpt lat="42.32104" lon="-71.11432"></trkpt>
+      <trkpt lat="42.31929" lon="-71.11284"></trkpt>
+      <trkpt lat="42.31742" lon="-71.11148"></trkpt>
+      <trkpt lat="42.31518" lon="-71.11117"></trkpt>
+      <trkpt lat="42.31346" lon="-71.11234"></trkpt>
+      <trkpt lat="42.31192" lon="-71.11446"></trkpt>
+      <trkpt lat="42.31301" lon="-71.11652"></trkpt>
+      <trkpt lat="42.31472" lon="-71.11918"></trkpt>
+      <trkpt lat="42.31664" lon="-71.11772"></trkpt>
+      <trkpt lat="42.31816" lon="-71.11572"></trkpt>
+      <trkpt lat="42.31929" lon="-71.11284"></trkpt>
+      <trkpt lat="42.32104" lon="-71.11432"></trkpt>
+      <trkpt lat="42.32313" lon="-71.11605"></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Forest Hills Runners" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata>
+    <name>Arnold Arboretum Carriage Roads</name>
+  </metadata>
+  <trk>
+    <name>Arnold Arboretum Carriage Roads</name>
+    <trkseg>
+      <trkpt lat="42.30172" lon="-71.11382"></trkpt>
+      <trkpt lat="42.30019" lon="-71.11518"></trkpt>
+      <trkpt lat="42.29858" lon="-71.11658"></trkpt>
+      <trkpt lat="42.29742" lon="-71.11923"></trkpt>
+      <trkpt lat="42.29719" lon="-71.12213"></trkpt>
+      <trkpt lat="42.29862" lon="-71.12462"></trkpt>
+      <trkpt lat="42.30074" lon="-71.12638"></trkpt>
+      <trkpt lat="42.30312" lon="-71.12732"></trkpt>
+      <trkpt lat="42.30568" lon="-71.12708"></trkpt>
+      <trkpt lat="42.30748" lon="-71.12513"></trkpt>
+      <trkpt lat="42.30808" lon="-71.12246"></trkpt>
+      <trkpt lat="42.30668" lon="-71.12024"></trkpt>
+      <trkpt lat="42.30426" lon="-71.11891"></trkpt>
+      <trkpt lat="42.30182" lon="-71.11947"></trkpt>
+      <trkpt lat="42.29952" lon="-71.12092"></trkpt>
+      <trkpt lat="42.29789" lon="-71.11958"></trkpt>
+      <trkpt lat="42.29842" lon="-71.11686"></trkpt>
+      <trkpt lat="42.30044" lon="-71.11487"></trkpt>
+      <trkpt lat="42.30172" lon="-71.11382"></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

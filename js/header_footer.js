@@ -1,23 +1,30 @@
 document.addEventListener("DOMContentLoaded", function() {
+    var pathParts = window.location.pathname.split('/').filter(Boolean);
+    var currentSection = pathParts[pathParts.length - 1] === 'index.html'
+        ? pathParts[pathParts.length - 2]
+        : pathParts[pathParts.length - 1];
+    var nestedSections = ['about', 'run-with-us', 'routes', 'faq', 'contact'];
+    var sitePrefix = nestedSections.indexOf(currentSection) >= 0 ? '../' : '';
+
     // Create the header element
     var header = document.createElement('header');
     header.innerHTML = `
         <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="index.html">
-                    <img src="images/logo.png" alt="Forest Hills Runners Logo" class="logo-circle">
+                <a class="navbar-brand" href="${sitePrefix || './'}">
+                    <img src="${sitePrefix}images/logo.png" alt="Forest Hills Runners Logo" class="logo-circle">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="run-with-us.html">Run With Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="routes.html">Running Routes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${sitePrefix || './'}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${sitePrefix}about/">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${sitePrefix}run-with-us/">Run With Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${sitePrefix}routes/">Running Routes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${sitePrefix}faq/">FAQ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${sitePrefix}contact/">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -48,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
     instagramA.className = 'text-body-secondary';
     instagramA.href = 'https://www.instagram.com/fhrunners';
     var instagramImg = document.createElement('img');
-    instagramImg.src = 'images/instagram_logo.svg';
+    instagramImg.src = sitePrefix + 'images/instagram_logo.svg';
     instagramImg.className = 'footer-logo mx-1';
     instagramImg.alt = 'Instagram';
     instagramImg.width = 24;
@@ -62,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
     facebookA.className = 'text-body-secondary';
     facebookA.href = 'https://www.facebook.com/groups/foresthillsrunners/';
     var facebookImg = document.createElement('img');
-    facebookImg.src = 'images/facebook_logo.svg';
+    facebookImg.src = sitePrefix + 'images/facebook_logo.svg';
     facebookImg.className = 'footer-logo mx-1';
     facebookImg.alt = 'Facebook';
     facebookImg.width = 24;

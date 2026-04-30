@@ -1,6 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
+    const pathParts = window.location.pathname.split('/').filter(Boolean);
+    const currentSection = pathParts[pathParts.length - 1] === 'index.html'
+        ? pathParts[pathParts.length - 2]
+        : pathParts[pathParts.length - 1];
+    const sitePrefix = currentSection === 'faq' ? '../' : '';
+
     // Load the CSV file and create the FAQ section
-    fetch('faqs.csv')
+    fetch(sitePrefix + 'faqs.csv')
         .then(response => response.text())
         .then(csvText => {
             const faqs = parseCSV(csvText);

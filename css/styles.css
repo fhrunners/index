@@ -190,3 +190,226 @@ html, body {
     border-color: #092409; /* Forest green */
     color: #FFD700; /* Yellow-gold text */
 }
+
+.routes-hero {
+    background-image: url('../images/secondary_splash.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    min-height: 40vh;
+    height: 40vh;
+}
+
+.routes-page {
+    background: #f4f4f4;
+    padding: 2rem 0 4rem;
+}
+
+.routes-content {
+    max-width: 1060px;
+}
+
+.route-map-frame {
+    background: #dfe9dc;
+    border: 1px solid rgba(9, 36, 9, 0.18);
+    border-radius: 8px;
+    box-shadow: 0 12px 30px rgba(9, 36, 9, 0.1);
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.route-map {
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0)),
+        #dfe9dc;
+    height: min(58vh, 560px);
+    min-height: 390px;
+    width: 100%;
+}
+
+.route-map-fallback {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.route-fallback-svg {
+    height: 100%;
+    width: 100%;
+}
+
+.routes-help {
+    color: #253225;
+    font-size: 1.02rem;
+    margin: 0.7rem 0 1rem;
+}
+
+.inline-map-toggle {
+    background: transparent;
+    border: 0;
+    color: #0b5f0b;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 0;
+    text-decoration: underline;
+}
+
+.routes-toolbar {
+    align-items: center;
+    background: #fff;
+    border: 1px solid rgba(9, 36, 9, 0.12);
+    border-radius: 8px;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    margin-bottom: 1.2rem;
+    padding: 0.75rem 0.9rem;
+}
+
+.routes-toolbar span {
+    color: #092409;
+    font-weight: 700;
+}
+
+.routes-toolbar div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+.map-routes {
+    display: grid;
+    gap: 1.3rem 2.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.route-section-heading {
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid rgba(9, 36, 9, 0.18);
+    color: #092409;
+    cursor: pointer;
+    display: flex;
+    font-size: 1.18rem;
+    font-weight: 800;
+    justify-content: space-between;
+    line-height: 1.25;
+    margin: 0 0 0.65rem;
+    padding: 0 0 0.45rem;
+    text-align: left;
+    width: 100%;
+}
+
+.route-section-heading::after {
+    color: #4d7c3a;
+    content: "-";
+    font-weight: 900;
+    margin-left: 0.8rem;
+}
+
+.route-section-heading[aria-expanded="false"]::after {
+    content: "+";
+}
+
+.route-entry {
+    border-left: 4px solid transparent;
+    color: #222;
+    margin: 0.45rem 0;
+    padding: 0.1rem 0 0.25rem 0.55rem;
+}
+
+.route-entry.selected {
+    border-left-color: #4d7c3a;
+}
+
+.routename {
+    background: transparent;
+    border: 0;
+    color: #0b5f0b;
+    cursor: pointer;
+    font-weight: 800;
+    line-height: 1.35;
+    padding: 0;
+    text-align: left;
+}
+
+.routename:hover,
+.routename:focus {
+    color: #092409;
+    outline: none;
+    text-decoration: underline;
+}
+
+.route-description {
+    color: #313a31;
+    display: block;
+    line-height: 1.45;
+    margin-top: 0.25rem;
+}
+
+.route-meta {
+    color: #596259;
+    display: block;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+.route-links {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-left: 0.3rem;
+}
+
+.route-links::before {
+    content: "(";
+}
+
+.route-links::after {
+    content: ")";
+}
+
+.route-links a {
+    color: #0b5f0b;
+    font-weight: 700;
+}
+
+.route-links a:not(:last-child)::after {
+    color: #596259;
+    content: ",";
+    margin-left: 0.1rem;
+}
+
+.leaflet-container {
+    font-family: Arial, sans-serif;
+}
+
+@media (max-width: 767.98px) {
+    .routes-page {
+        padding-top: 1.4rem;
+    }
+
+    .routes-hero {
+        min-height: 34vh;
+        height: 34vh;
+    }
+
+    .route-map {
+        height: 46vh;
+        min-height: 300px;
+    }
+
+    .routes-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .routes-toolbar div {
+        justify-content: flex-start;
+    }
+
+    .map-routes {
+        grid-template-columns: 1fr;
+    }
+}
