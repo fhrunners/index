@@ -383,6 +383,254 @@ html, body {
 
 .leaflet-container {
     font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.leaflet-pane,
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-tile-container,
+.leaflet-pane > svg,
+.leaflet-pane > canvas,
+.leaflet-zoom-box,
+.leaflet-image-layer,
+.leaflet-layer {
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+    max-height: none !important;
+    max-width: none !important;
+}
+
+.leaflet-tile {
+    filter: inherit;
+    visibility: hidden;
+}
+
+.leaflet-tile-loaded {
+    visibility: inherit;
+}
+
+.leaflet-pane > svg path,
+.leaflet-tile-container {
+    pointer-events: none;
+}
+
+.leaflet-marker-icon.leaflet-interactive,
+.leaflet-image-layer.leaflet-interactive,
+.leaflet-pane > svg path.leaflet-interactive,
+svg.leaflet-image-layer.leaflet-interactive path {
+    pointer-events: auto;
+}
+
+.leaflet-pane {
+    z-index: 400;
+}
+
+.leaflet-tile-pane {
+    z-index: 200;
+}
+
+.leaflet-overlay-pane {
+    z-index: 400;
+}
+
+.leaflet-marker-pane {
+    z-index: 600;
+}
+
+.leaflet-tooltip-pane {
+    z-index: 650;
+}
+
+.leaflet-popup-pane {
+    z-index: 700;
+}
+
+.leaflet-popup {
+    margin-bottom: 20px;
+    position: absolute;
+    text-align: center;
+}
+
+.leaflet-popup-content-wrapper {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(9, 36, 9, 0.22);
+    padding: 1px;
+    text-align: left;
+}
+
+.leaflet-popup-content {
+    line-height: 1.4;
+    margin: 0.85rem 1rem;
+}
+
+.leaflet-popup-tip-container {
+    height: 20px;
+    left: 50%;
+    margin-left: -20px;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    width: 40px;
+}
+
+.leaflet-popup-tip {
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(9, 36, 9, 0.18);
+    height: 16px;
+    margin: -9px auto 0;
+    transform: rotate(45deg);
+    width: 16px;
+}
+
+.leaflet-popup-close-button {
+    background: transparent;
+    border: 0;
+    color: #596259;
+    font: 18px/1 Arial, sans-serif;
+    padding: 0.35rem 0.45rem;
+    position: absolute;
+    right: 0;
+    text-decoration: none;
+    top: 0;
+}
+
+.leaflet-popup-close-button:hover,
+.leaflet-popup-close-button:focus {
+    color: #092409;
+    text-decoration: none;
+}
+
+.leaflet-tooltip {
+    background: #fff;
+    border: 1px solid rgba(9, 36, 9, 0.22);
+    border-radius: 4px;
+    box-shadow: 0 4px 14px rgba(9, 36, 9, 0.12);
+    color: #092409;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0.18rem 0.42rem;
+    pointer-events: none;
+    position: absolute;
+    white-space: nowrap;
+}
+
+.leaflet-tooltip-top {
+    margin-top: -6px;
+}
+
+.route-poi-tooltip {
+    border-color: rgba(9, 36, 9, 0.28);
+}
+
+.route-poi-marker {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.route-poi-marker-dot {
+    background: var(--poi-fill, #ffd700);
+    border: 2px solid var(--poi-color, #092409);
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(9, 36, 9, 0.28);
+    display: block;
+    height: 14px;
+    width: 14px;
+}
+
+.route-poi-popup-content strong {
+    color: #092409;
+    display: block;
+    font-size: 1rem;
+    line-height: 1.25;
+    margin-bottom: 0.35rem;
+}
+
+.route-poi-popup-content p {
+    color: #253225;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.leaflet-control {
+    clear: both;
+    float: left;
+    pointer-events: auto;
+    position: relative;
+    z-index: 800;
+}
+
+.leaflet-top,
+.leaflet-bottom {
+    pointer-events: none;
+    position: absolute;
+    z-index: 1000;
+}
+
+.leaflet-top {
+    top: 0;
+}
+
+.leaflet-right {
+    right: 0;
+}
+
+.leaflet-bottom {
+    bottom: 0;
+}
+
+.leaflet-left {
+    left: 0;
+}
+
+.leaflet-left .leaflet-control {
+    margin-left: 10px;
+}
+
+.leaflet-top .leaflet-control {
+    margin-top: 10px;
+}
+
+.leaflet-control-zoom a {
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    color: #092409;
+    display: block;
+    font-size: 22px;
+    font-weight: 700;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    text-decoration: none;
+    width: 30px;
+}
+
+.leaflet-control-zoom a:hover,
+.leaflet-control-zoom a:focus {
+    background-color: #f4f4f4;
+    color: #092409;
+    text-decoration: none;
+}
+
+.leaflet-control-zoom-in {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.leaflet-control-zoom-out {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
 @media (max-width: 767.98px) {

@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const sitePrefix = getSitePrefix();
-    const routeCsvUrl = sitePrefix + "routes.csv";
+    const routeJsonUrl = sitePrefix + "routes.json";
+    const poiJsonUrl = sitePrefix + "route-pois.json";
     const mapElement = document.getElementById("route-map");
     const routeSectionsElement = document.getElementById("map-routes");
     const routeStatusElement = document.getElementById("route-status");
@@ -12,27 +13,17 @@ document.addEventListener("DOMContentLoaded", function() {
     const routeLayers = new Map();
     const routeElements = new Map();
     const routeColors = ["#0b5f0b", "#d97706", "#2563eb", "#b91c1c", "#7c3aed", "#047857", "#be123c"];
+    const sectionOrder = [
+        "Regular FHR Weekly Runs",
+        "FHR Saturday Long Runs",
+        "Shorter Runs",
+        "Longer Runs",
+        "Hills and Workouts"
+    ];
     let map = null;
     let poiLayer = null;
     let routes = [];
-
-    const pointsOfInterest = [
-        {
-            name: "Forest Hills Bike Rotary",
-            description: "Monday and Saturday meetup spot",
-            coordinates: [42.30172, -71.11382]
-        },
-        {
-            name: "Downes Field Track",
-            description: "Thursday track night meetup spot",
-            coordinates: [42.32313, -71.11605]
-        },
-        {
-            name: "J.P. Licks",
-            description: "Common Saturday post-run finish",
-            coordinates: [42.31481, -71.11403]
-        }
-    ];
+    let pointsOfInterest = [];
 
     if (!mapElement || !routeSectionsElement) {
         return;
@@ -40,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     initializeMap();
     loadRoutes();
+    loadPointsOfInterest();
 
     if (showAllButton) {
         showAllButton.addEventListener("click", function() {
@@ -81,7 +73,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         map = L.map(mapElement, {
-            scrollWheelZoom: false,
+            scrollWheelZoom: true,
+            zoomControl: true,
             center: [42.3098, -71.1146],
             zoom: 13
         });
@@ -91,110 +84,89 @@ document.addEventListener("DOMContentLoaded", function() {
             attribution: "&copy; OpenStreetMap contributors"
         }).addTo(map);
 
-        poiLayer = L.layerGroup(pointsOfInterest.map(function(poi) {
-            return L.circleMarker(poi.coordinates, {
-                radius: 7,
-                color: "#092409",
-                fillColor: "#ffd700",
-                fillOpacity: 0.9,
-                weight: 2
-            }).bindPopup(`<strong>${escapeHtml(poi.name)}</strong><br>${escapeHtml(poi.description)}`);
-        })).addTo(map);
+        refreshMapSize();
+        window.addEventListener("load", refreshMapSize);
+        window.addEventListener("resize", refreshMapSize);
+
+        poiLayer = L.layerGroup().addTo(map);
+    }
+
+    function refreshMapSize() {
+        if (!hasLeaflet || !map) {
+            return;
+        }
+
+        window.requestAnimationFrame(function() {
+            map.invalidateSize();
+        });
+
+        window.setTimeout(function() {
+            map.invalidateSize();
+        }, 250);
     }
 
     function loadRoutes() {
-        fetch(routeCsvUrl)
+        fetch(routeJsonUrl)
             .then(function(response) {
                 if (!response.ok) {
-                    throw new Error("Could not load " + routeCsvUrl);
+                    throw new Error("Could not load " + routeJsonUrl);
                 }
-                return response.text();
+                return response.json();
             })
-            .then(function(csvText) {
-                routes = parseRouteCsv(csvText).map(function(route, index) {
-                    route.color = routeColors[index % routeColors.length];
-                    return route;
-                });
+            .then(function(routeData) {
+                routes = routeData.map(normalizeRoute);
                 renderRouteSections(routes);
                 updateRouteStatus(`${routes.length} routes loaded`);
             })
             .catch(function(error) {
                 console.error("Error loading routes:", error);
-                updateRouteStatus("Routes could not be loaded. Check routes.csv and the GPX files.");
+                updateRouteStatus("Routes could not be loaded. Check routes.json and the GPX files.");
             });
     }
 
-    function parseRouteCsv(csvText) {
-        const rows = parseDelimitedRows(csvText.trim(), "|");
-        const headers = rows.shift().map(function(header) {
-            return header.trim();
-        });
-
-        return rows
-            .filter(function(row) {
-                return row.some(function(cell) {
-                    return cell.trim() !== "";
-                });
-            })
-            .map(function(row) {
-                const route = {};
-
-                headers.forEach(function(header, index) {
-                    route[header] = (row[index] || "").trim();
-                });
-
-                route.categories = splitList(route.categories);
-                route.gpxUrl = resolveAssetPath(route.gpx);
-                route.stravaUrl = route.strava_url || "";
-                route.mapUrl = route.map_url || "";
-                route.section = route.section || "Routes";
-                return route;
-            });
-    }
-
-    function parseDelimitedRows(text, delimiter) {
-        const rows = [];
-        let row = [];
-        let cell = "";
-        let inQuotes = false;
-
-        for (let index = 0; index < text.length; index += 1) {
-            const character = text[index];
-            const nextCharacter = text[index + 1];
-
-            if (character === '"' && nextCharacter === '"') {
-                cell += '"';
-                index += 1;
-            } else if (character === '"') {
-                inQuotes = !inQuotes;
-            } else if (character === delimiter && !inQuotes) {
-                row.push(cell);
-                cell = "";
-            } else if ((character === "\n" || character === "\r") && !inQuotes) {
-                if (character === "\r" && nextCharacter === "\n") {
-                    index += 1;
+    function loadPointsOfInterest() {
+        fetch(poiJsonUrl)
+            .then(function(response) {
+                if (!response.ok) {
+                    throw new Error("Could not load " + poiJsonUrl);
                 }
-                row.push(cell);
-                rows.push(row);
-                row = [];
-                cell = "";
-            } else {
-                cell += character;
-            }
-        }
-
-        row.push(cell);
-        rows.push(row);
-        return rows;
+                return response.json();
+            })
+            .then(function(poiData) {
+                pointsOfInterest = poiData.map(normalizePoint).filter(function(poi) {
+                    return Number.isFinite(poi.lat) && Number.isFinite(poi.lng);
+                });
+                renderPointsOfInterest();
+            })
+            .catch(function(error) {
+                console.error("Error loading points of interest:", error);
+            });
     }
 
-    function splitList(value) {
-        return (value || "")
-            .split(";")
-            .map(function(item) {
-                return item.trim();
-            })
-            .filter(Boolean);
+    function normalizeRoute(route, index) {
+        return {
+            id: route.id,
+            section: route.section || "Longer Runs",
+            name: route.name,
+            distance: route.distance || "",
+            description: route.description || "",
+            gpxUrl: resolveAssetPath(route.gpx),
+            stravaUrl: route.stravaUrl || "",
+            startPointUrl: route.startPointUrl || "",
+            color: route.color || routeColors[index % routeColors.length]
+        };
+    }
+
+    function normalizePoint(poi) {
+        return {
+            id: poi.id,
+            name: poi.name,
+            description: poi.description || "",
+            lat: parseFloat(poi.lat),
+            lng: parseFloat(poi.lng),
+            color: poi.color || "#092409",
+            fillColor: poi.fillColor || "#ffd700"
+        };
     }
 
     function resolveAssetPath(path) {
@@ -217,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function() {
             return groups;
         }, {});
 
-        Object.keys(groupedRoutes).forEach(function(sectionName) {
+        sectionOrder.forEach(function(sectionName) {
             const section = document.createElement("section");
             section.className = "route-section";
 
@@ -230,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const list = document.createElement("div");
             list.className = "route-section-list";
 
-            groupedRoutes[sectionName].forEach(function(route) {
+            (groupedRoutes[sectionName] || []).forEach(function(route) {
                 list.appendChild(createRouteEntry(route));
             });
 
@@ -265,11 +237,6 @@ document.addEventListener("DOMContentLoaded", function() {
         descriptionText.textContent = route.description;
         description.appendChild(descriptionText);
 
-        const meta = document.createElement("span");
-        meta.className = "route-meta";
-        meta.textContent = routeMeta(route);
-        description.appendChild(meta);
-
         const links = createRouteLinks(route);
         if (links.childNodes.length > 0) {
             description.appendChild(links);
@@ -286,15 +253,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function routeTitle(route) {
-        const details = [route.distance, route.elevation].filter(Boolean).join(", ");
-        return details ? `${route.name} (${details})` : route.name;
-    }
-
-    function routeMeta(route) {
-        const meta = [route.vibe, route.start ? "Start: " + route.start : "", route.end ? "End: " + route.end : ""]
-            .filter(Boolean)
-            .join(" | ");
-        return meta ? " " + meta : "";
+        return route.distance ? `${route.name} (${route.distance})` : route.name;
     }
 
     function createRouteLinks(route) {
@@ -309,8 +268,8 @@ document.addEventListener("DOMContentLoaded", function() {
             links.appendChild(createLink("gpx", route.gpxUrl, true));
         }
 
-        if (route.mapUrl) {
-            links.appendChild(createLink("Meetup map", route.mapUrl, false));
+        if (route.startPointUrl) {
+            links.appendChild(createLink("Start point", route.startPointUrl, false));
         }
 
         return links;
@@ -329,6 +288,70 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         return link;
+    }
+
+    function renderPointsOfInterest() {
+        if (!hasLeaflet || !poiLayer) {
+            return;
+        }
+
+        poiLayer.clearLayers();
+
+        pointsOfInterest.forEach(function(poi) {
+            const marker = L.marker([poi.lat, poi.lng], {
+                icon: L.divIcon({
+                    className: "route-poi-marker",
+                    html: `<span class="route-poi-marker-dot" style="--poi-color: ${escapeAttribute(poi.color)}; --poi-fill: ${escapeAttribute(poi.fillColor)};"></span>`,
+                    iconSize: [18, 18],
+                    iconAnchor: [9, 9],
+                    popupAnchor: [0, -10]
+                })
+            })
+                .bindPopup(createPointPopup(poi), {
+                    className: "route-poi-popup",
+                    maxWidth: 280
+                });
+
+            marker.addTo(poiLayer);
+        });
+
+        if (activeRouteIds.size === 0) {
+            fitPointsOfInterest();
+        }
+    }
+
+    function createPointPopup(poi) {
+        return `
+            <div class="route-poi-popup-content">
+                <strong>${escapeHtml(poi.name)}</strong>
+                <p>${escapeHtml(poi.description || "")}</p>
+            </div>
+        `;
+    }
+
+    function escapeAttribute(value) {
+        return String(value || "")
+            .replace(/&/g, "&amp;")
+            .replace(/"/g, "&quot;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+    }
+
+    function fitPointsOfInterest() {
+        if (!hasLeaflet || !map || pointsOfInterest.length === 0) {
+            return;
+        }
+
+        const bounds = L.latLngBounds(pointsOfInterest.map(function(poi) {
+            return [poi.lat, poi.lng];
+        }));
+
+        if (bounds.isValid()) {
+            map.fitBounds(bounds, {
+                padding: [32, 32],
+                maxZoom: 13
+            });
+        }
     }
 
     function setRouteActive(route, shouldActivate, shouldFit) {

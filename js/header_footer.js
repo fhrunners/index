@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
     leftDiv.className = 'col-md-4 align-items-center';
     var span = document.createElement('span');
     span.className = 'text-body-secondary';
-    span.innerHTML = '&copy; 2024 Forest Hills Runners';
+    span.innerHTML = '&copy; 2026 Forest Hills Runners';
     leftDiv.appendChild(span);
 
     // Add the right side content
