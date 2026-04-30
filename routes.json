@@ -2,25 +2,25 @@
   {
     "id": "monday-jamaica-pond",
     "section": "Regular FHR Weekly Runs",
-    "name": "Monday Jamaica Pond Social Loop",
+    "name": "Monday Social / Recovery Run",
     "distance": "3.4 mi",
-    "description": "The Monday recovery standard from Forest Hills to Jamaica Pond and back, keeping the miles relaxed and conversational.",
+    "description": "Our standard Monday run, from Forest Hills through the SW Corridor and around Jamaica Pond.",
     "gpx": "assets/routes/fhr-monday-jamaica-pond.gpx"
   },
   {
     "id": "tuesday-five-mile",
     "section": "Regular FHR Weekly Runs",
-    "name": "Tuesday Five Mile Loop",
+    "name": "Tuesday Morning Run",
     "distance": "5.0 mi",
-    "description": "A steady Tuesday loop from Downes Field through Jamaica Pond and the surrounding neighborhood streets.",
+    "description": "Our standard Tuesday morning route, from the Jamaica Pond Boathouse along the Emerald Necklace to the Landmark Center and back.",
     "gpx": "assets/routes/fhr-tuesday-five-mile.gpx"
   },
   {
     "id": "jamaica-pond-short-loop",
     "section": "Shorter Runs",
-    "name": "Jamaica Pond Short Loop",
+    "name": "Jamaica Pond Loop",
     "distance": "1.5 mi",
-    "description": "A compact pond loop from Downes Field for warmups, cooldowns, or easy extra miles.",
+    "description": "A lap around Jamaica Pond is about 1.5 miles, perfect for an easy loop, a warmup, or adding extra distance before or after a group run.",
     "gpx": "assets/routes/fhr-jamaica-pond-short-loop.gpx"
   },
   {
@@ -28,7 +28,7 @@
     "section": "Hills and Workouts",
     "name": "Bussey Hill Repeats",
     "distance": "3.7 mi",
-    "description": "A hill-focused route from Downes Field into the Arboretum, built around the Bussey Hill climb.",
+    "description": "A nice climb up and around the Arboretum's Bussey Hill - great views of the Boston skyline at the top!",
     "gpx": "assets/routes/fhr-bussey-hill-repeats.gpx"
   },
   {
@@ -36,31 +36,39 @@
     "section": "FHR Saturday Long Runs",
     "name": "Saturday Franklin Park Four",
     "distance": "4.0 mi",
-    "description": "A shorter Saturday option that heads from Forest Hills into Franklin Park before returning for the post-run meetup.",
+    "description": "A Saturday long run option that heads from Forest Hills into Franklin Park before returning to J.P. Licks.",
     "gpx": "assets/routes/fhr-saturday-franklin-park-four.gpx"
-  },
-  {
-    "id": "saturday-franklin-park-five",
-    "section": "FHR Saturday Long Runs",
-    "name": "Saturday Franklin Park Five",
-    "distance": "5.1 mi",
-    "description": "A Franklin Park Saturday loop with a little more distance while staying close to the Forest Hills start and finish.",
-    "gpx": "assets/routes/fhr-saturday-franklin-park-five.gpx"
   },
   {
     "id": "saturday-arboretum-hills",
     "section": "FHR Saturday Long Runs",
     "name": "Saturday Arboretum Hills",
     "distance": "4.7 mi",
-    "description": "A Saturday Arboretum route with rolling climbs and carriage-road miles close to Forest Hills.",
+    "description": "A Saturday Arboretum route with rolling climbs, especially lovely in spring when the path passes the Arboretum's famous lilacs.",
     "gpx": "assets/routes/fhr-saturday-arboretum-hills.gpx"
+  },
+  {
+    "id": "saturday-franklin-park-five",
+    "section": "FHR Saturday Long Runs",
+    "name": "Saturday Franklin Park Five",
+    "distance": "5.1 mi",
+    "description": "A Franklin Park Saturday long run route with an added loop near the Zoo / White Stadium.",
+    "gpx": "assets/routes/fhr-saturday-franklin-park-five.gpx"
+  },
+  {
+    "id": "saturday-muddy-river",
+    "section": "FHR Saturday Long Runs",
+    "name": "Saturday Muddy River to Landmark Center",
+    "distance": "6.8 mi",
+    "description": "A longer Saturday route along the Emerald Necklace to the Landmark Center and back.",
+    "gpx": "assets/routes/fhr-saturday-muddy-river.gpx"
   },
   {
     "id": "saturday-double-reservoir",
     "section": "FHR Saturday Long Runs",
     "name": "Saturday Double Reservoir Loop",
     "distance": "7.3 mi",
-    "description": "A longer Saturday loop linking Jamaica Pond, the Arboretum, and the reservoir paths before returning to Forest Hills.",
+    "description": "A longer Saturday route linking Jamaica Pond, the Arboretum, and a nearby reservoir.",
     "gpx": "assets/routes/fhr-saturday-double-reservoir.gpx"
   },
   {

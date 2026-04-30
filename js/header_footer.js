@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var currentSection = pathParts[pathParts.length - 1] === 'index.html'
         ? pathParts[pathParts.length - 2]
         : pathParts[pathParts.length - 1];
-    var nestedSections = ['about', 'run-with-us', 'routes', 'faq', 'contact'];
+    var nestedSections = ['about', 'new-to-fhr', 'run-with-us', 'routes', 'faq', 'contact'];
     var sitePrefix = nestedSections.indexOf(currentSection) >= 0 ? '../' : '';
 
     // Create the header element
@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link" href="${sitePrefix || './'}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="${sitePrefix}about/">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${sitePrefix}new-to-fhr/">New to FHR?</a></li>
                         <li class="nav-item"><a class="nav-link" href="${sitePrefix}run-with-us/">Run With Us</a></li>
                         <li class="nav-item"><a class="nav-link" href="${sitePrefix}routes/">Running Routes</a></li>
                         <li class="nav-item"><a class="nav-link" href="${sitePrefix}faq/">FAQ</a></li>

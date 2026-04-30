@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", function() {
     ];
     let map = null;
     let poiLayer = null;
+    let routeRenderer = null;
+    let pointsOfInterestVisible = true;
     let routes = [];
     let pointsOfInterest = [];
 
@@ -40,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
             })).then(function() {
                 fitActiveRoutes();
                 renderFallbackRoutes();
-                updateRouteStatus(`${activeRouteIds.size} routes selected`);
+                updateRouteStatusFromActiveRoutes();
             });
         });
     }
@@ -68,6 +70,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (!hasLeaflet) {
             mapElement.classList.add("route-map-fallback");
             mapElement.innerHTML = '<svg class="route-fallback-svg" role="img" aria-label="Selected route preview"></svg>';
+            updatePointsOfInterestToggle(pointsOfInterestVisible);
             updateRouteStatus("Select a route below to preview it on the map");
             return;
         }
@@ -84,11 +87,34 @@ document.addEventListener("DOMContentLoaded", function() {
             attribution: "&copy; OpenStreetMap contributors"
         }).addTo(map);
 
+        initializeRouteRenderer();
         refreshMapSize();
         window.addEventListener("load", refreshMapSize);
         window.addEventListener("resize", refreshMapSize);
 
         poiLayer = L.layerGroup().addTo(map);
+        updatePointsOfInterestToggle(pointsOfInterestVisible);
+    }
+
+    function initializeRouteRenderer() {
+        map.createPane("routePane");
+
+        const routePane = map.getPane("routePane");
+        if (routePane) {
+            routePane.style.zIndex = 450;
+        }
+
+        const rendererOptions = {
+            padding: 0.5,
+            pane: "routePane"
+        };
+
+        if (L.canvas) {
+            rendererOptions.tolerance = 8;
+            routeRenderer = L.canvas(rendererOptions);
+        } else {
+            routeRenderer = L.svg(rendererOptions);
+        }
     }
 
     function refreshMapSize() {
@@ -226,7 +252,18 @@ document.addEventListener("DOMContentLoaded", function() {
         const button = document.createElement("button");
         button.type = "button";
         button.className = "routename";
-        button.textContent = routeTitle(route);
+        button.setAttribute("aria-pressed", "false");
+
+        const title = document.createElement("span");
+        title.className = "route-title";
+        title.textContent = routeTitle(route);
+
+        const toggleLabel = document.createElement("span");
+        toggleLabel.className = "route-toggle-label";
+
+        button.appendChild(title);
+        button.appendChild(toggleLabel);
+        updateRouteButtonState(button, toggleLabel, route, false);
 
         const description = document.createElement("span");
         description.className = "route-description";
@@ -248,8 +285,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
         item.appendChild(button);
         item.appendChild(description);
-        routeElements.set(route.id, { item: item, description: description, button: button });
+        routeElements.set(route.id, { item: item, description: description, button: button, toggleLabel: toggleLabel });
         return item;
+    }
+
+    function updateRouteButtonState(button, toggleLabel, route, isActive) {
+        button.setAttribute("aria-pressed", isActive ? "true" : "false");
+        button.setAttribute("aria-label", `${isActive ? "Hide" : "Show"} ${routeTitle(route)} on the map`);
+        toggleLabel.textContent = isActive ? "Shown" : "Show";
     }
 
     function routeTitle(route) {
@@ -368,6 +411,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (elements) {
                 elements.item.classList.remove("selected");
                 elements.description.hidden = true;
+                updateRouteButtonState(elements.button, elements.toggleLabel, route, false);
             }
 
             renderFallbackRoutes();
@@ -394,10 +438,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (elements) {
                     elements.item.classList.add("selected");
                     elements.description.hidden = false;
+                    updateRouteButtonState(elements.button, elements.toggleLabel, route, true);
                 }
 
                 renderFallbackRoutes();
-                updateRouteStatusFromActiveRoutes(route.name);
+                updateRouteStatusFromActiveRoutes();
             })
             .catch(function(error) {
                 console.error("Error loading route:", error);
@@ -436,7 +481,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 const layer = L.polyline(coordinates, {
                     color: route.color,
                     weight: 5,
-                    opacity: 0.9
+                    opacity: 0.9,
+                    renderer: routeRenderer
                 }).bindTooltip(route.name, {
                     sticky: true
                 });
@@ -564,24 +610,41 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function togglePointsOfInterest() {
         if (!hasLeaflet || !poiLayer) {
-            mapElement.classList.toggle("hide-route-pois");
+            pointsOfInterestVisible = !pointsOfInterestVisible;
+            mapElement.classList.toggle("hide-route-pois", !pointsOfInterestVisible);
+            updatePointsOfInterestToggle(pointsOfInterestVisible);
             return;
         }
 
         if (map.hasLayer(poiLayer)) {
             map.removeLayer(poiLayer);
+            pointsOfInterestVisible = false;
         } else {
             poiLayer.addTo(map);
+            pointsOfInterestVisible = true;
+        }
+
+        updatePointsOfInterestToggle(pointsOfInterestVisible);
+    }
+
+    function updatePointsOfInterestToggle(isVisible) {
+        if (togglePoisButton) {
+            togglePoisButton.setAttribute("aria-pressed", isVisible ? "true" : "false");
         }
     }
 
-    function updateRouteStatusFromActiveRoutes(routeName) {
-        if (activeRouteIds.size === 0) {
+    function updateRouteStatusFromActiveRoutes() {
+        const activeCount = activeRouteIds.size;
+
+        if (activeCount === 0) {
             updateRouteStatus("No routes selected");
-        } else if (routeName) {
-            updateRouteStatus(routeName);
+        } else if (activeCount === 1) {
+            const activeRoute = routes.find(function(route) {
+                return activeRouteIds.has(route.id);
+            });
+            updateRouteStatus(activeRoute ? activeRoute.name : "1 route selected");
         } else {
-            updateRouteStatus(`${activeRouteIds.size} routes selected`);
+            updateRouteStatus(`${activeCount} routes selected`);
         }
     }
 
