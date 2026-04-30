@@ -191,15 +191,6 @@ html, body {
     color: #FFD700; /* Yellow-gold text */
 }
 
-.routes-hero {
-    background-image: url('../images/secondary_splash.jpg');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    min-height: 40vh;
-    height: 40vh;
-}
-
 .routes-page {
     background: #f4f4f4;
     padding: 2rem 0 4rem;
@@ -636,11 +627,6 @@ svg.leaflet-image-layer.leaflet-interactive path {
 @media (max-width: 767.98px) {
     .routes-page {
         padding-top: 1.4rem;
-    }
-
-    .routes-hero {
-        min-height: 34vh;
-        height: 34vh;
     }
 
     .route-map {
