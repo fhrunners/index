@@ -3,7 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Answers to common Forest Hills Runners questions about joining, weekly run times, paces, meeting spots, weather, and community updates.">
     <meta name="theme-color" content="#092409">
+    <link rel="canonical" href="./">
+    <meta property="og:site_name" content="Forest Hills Runners">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Forest Hills Runners FAQ">
+    <meta property="og:description" content="Answers to common FHR questions about joining, weekly run times, paces, meeting spots, weather, and community updates.">
+    <meta property="og:image" content="../images/hero-background.jpg">
+    <meta property="og:image:alt" content="Forest Hills Runners in Jamaica Plain">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@fhrunners">
+    <meta name="twitter:title" content="Forest Hills Runners FAQ">
+    <meta name="twitter:description" content="Answers to common FHR questions about joining, weekly run times, paces, meeting spots, weather, and community updates.">
+    <meta name="twitter:image" content="../images/hero-background.jpg">
+    <meta name="twitter:image:alt" content="Forest Hills Runners in Jamaica Plain">
     <link rel="icon" href="../favicon.svg" type="image/svg+xml">
     <link rel="icon" href="../favicon-32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="../favicon-16x16.png" sizes="16x16" type="image/png">
@@ -17,13 +31,29 @@
     <section id="hero" class="text-center mb-5">
         <div class="jumbotron d-flex align-items-center background-fixed parallax" style="background-image: url('../images/hero-background.jpg'); background-size: cover; background-position: center; color: white; height: 40vh;">
             <div class="container text-white animated-text">
-                <h1 class="display-4 mt-5">Frequently Asked Questions</h1>
+                <h1 class="display-4 mt-5">FAQ</h1>
             </div>
         </div>
     </section>
-    <main class="container mt-5">
-        <section id="faq" class="mb-5">
-            <div class="accordion" id="faqAccordion">
+
+    <main class="new-runner-page faq-page">
+        <section id="faq" class="container new-runner-intro faq-intro">
+            <p class="new-runner-kicker">Frequently Asked Questions</p>
+            <div class="first-run-summary faq-tools">
+                <div class="faq-search">
+                    <label for="faqSearch">Search FAQs</label>
+                    <input id="faqSearch" type="search" placeholder="Try pace, weather, membership..." autocomplete="off">
+                </div>
+                <div class="faq-filter-group" id="faqFilters" aria-label="FAQ topics"></div>
+                <div class="faq-results-bar">
+                    <span id="faqStatus" aria-live="polite"></span>
+                </div>
+            </div>
+        </section>
+
+        <section class="container new-runner-section faq-question-section" aria-label="FAQ questions">
+            <h2 class="pb-2 border-bottom">Questions</h2>
+            <div class="faq-grid" id="faqList">
                 <!-- FAQ items will be dynamically inserted here -->
             </div>
         </section>

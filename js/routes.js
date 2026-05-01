@@ -99,17 +99,26 @@ document.addEventListener("DOMContentLoaded", function() {
             maxZoom: 19
         });
 
-        // Default basemap
-        cartoVoyager.addTo(map);
+        const baseLayers = [
+            {
+                id: "streets",
+                layer: cartoVoyager,
+                name: "Streets"
+            },
+            {
+                id: "light",
+                layer: cartoPositron,
+                name: "Light"
+            },
+            {
+                id: "satellite",
+                layer: esriWorldImagery,
+                name: "Satellite"
+            }
+        ];
 
-        L.control.layers({
-            "Voyager": cartoVoyager,
-            "Positron": cartoPositron,
-            "Satellite": esriWorldImagery
-        }, null, {
-            collapsed: true,
-            position: "topright"
-        }).addTo(map);
+        cartoVoyager.addTo(map);
+        createBaseLayerControl(baseLayers, "streets").addTo(map);
 
         initializeRouteRenderer();
         refreshMapSize();
@@ -118,6 +127,107 @@ document.addEventListener("DOMContentLoaded", function() {
 
         poiLayer = L.layerGroup().addTo(map);
         updatePointsOfInterestToggle(pointsOfInterestVisible);
+    }
+
+    function createBaseLayerControl(baseLayers, activeLayerId) {
+        const BaseLayerControl = L.Control.extend({
+            options: {
+                position: "topright"
+            },
+
+            onAdd: function(layerMap) {
+                let currentLayerId = activeLayerId;
+                const container = L.DomUtil.create("div", "route-basemap-control");
+                const toggleButton = L.DomUtil.create("button", "route-basemap-toggle", container);
+                const panelId = "route-basemap-options";
+                const panel = L.DomUtil.create("div", "route-basemap-panel", container);
+                const optionButtons = [];
+
+                toggleButton.type = "button";
+                toggleButton.setAttribute("aria-controls", panelId);
+                toggleButton.setAttribute("aria-expanded", "false");
+                toggleButton.setAttribute("aria-label", "Choose map style");
+                toggleButton.innerHTML = [
+                    '<span class="route-basemap-toggle-icon" aria-hidden="true"></span>',
+                    '<span class="route-basemap-toggle-text">Map</span>',
+                    '<span class="route-basemap-toggle-caret" aria-hidden="true"></span>'
+                ].join("");
+
+                panel.hidden = true;
+                panel.id = panelId;
+                panel.setAttribute("aria-label", "Map style");
+                panel.setAttribute("role", "radiogroup");
+
+                L.DomEvent.disableClickPropagation(container);
+                L.DomEvent.disableScrollPropagation(container);
+
+                function setExpanded(isExpanded) {
+                    container.classList.toggle("is-open", isExpanded);
+                    panel.hidden = !isExpanded;
+                    toggleButton.setAttribute("aria-expanded", String(isExpanded));
+                }
+
+                function updateOptions() {
+                    optionButtons.forEach(function(optionButton) {
+                        const isSelected = optionButton.dataset.layerId === currentLayerId;
+                        optionButton.classList.toggle("is-selected", isSelected);
+                        optionButton.setAttribute("aria-checked", String(isSelected));
+                    });
+                }
+
+                function selectLayer(baseLayer) {
+                    if (baseLayer.id !== currentLayerId) {
+                        baseLayers.forEach(function(candidateLayer) {
+                            if (candidateLayer.id !== baseLayer.id && layerMap.hasLayer(candidateLayer.layer)) {
+                                layerMap.removeLayer(candidateLayer.layer);
+                            }
+                        });
+
+                        if (!layerMap.hasLayer(baseLayer.layer)) {
+                            baseLayer.layer.addTo(layerMap);
+                        }
+
+                        currentLayerId = baseLayer.id;
+                        updateOptions();
+                    }
+
+                    setExpanded(false);
+                    toggleButton.focus();
+                }
+
+                toggleButton.addEventListener("click", function() {
+                    setExpanded(toggleButton.getAttribute("aria-expanded") !== "true");
+                });
+
+                baseLayers.forEach(function(baseLayer) {
+                    const optionButton = L.DomUtil.create("button", "route-basemap-option", panel);
+                    const label = L.DomUtil.create("span", "route-basemap-option-text", optionButton);
+                    const name = L.DomUtil.create("span", "route-basemap-option-name", label);
+
+                    optionButton.type = "button";
+                    optionButton.dataset.layerId = baseLayer.id;
+                    optionButton.setAttribute("role", "radio");
+                    name.textContent = baseLayer.name;
+                    optionButton.addEventListener("click", function() {
+                        selectLayer(baseLayer);
+                    });
+
+                    optionButtons.push(optionButton);
+                });
+
+                panel.addEventListener("keydown", function(event) {
+                    if (event.key === "Escape") {
+                        setExpanded(false);
+                        toggleButton.focus();
+                    }
+                });
+
+                updateOptions();
+                return container;
+            }
+        });
+
+        return new BaseLayerControl();
     }
 
     function initializeRouteRenderer() {

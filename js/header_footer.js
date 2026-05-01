@@ -37,11 +37,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Create the footer element
     var footer = document.createElement('footer');
-    footer.className = 'bg-dark text-yellow d-flex justify-content-between align-items-center py-3 border-top';
+    footer.className = 'site-footer bg-dark text-yellow d-flex justify-content-between align-items-center py-3 border-top';
 
     // Add the left side content
     var leftDiv = document.createElement('div');
-    leftDiv.className = 'col-md-4 align-items-center';
+    leftDiv.className = 'footer-copyright align-items-center';
     var span = document.createElement('span');
     span.className = 'text-body-secondary';
     span.innerHTML = '&copy; 2026 Forest Hills Runners';
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Add the right side content
     var rightUl = document.createElement('ul');
-    rightUl.className = 'nav col-md-1 justify-content-end list-unstyled d-flex';
+    rightUl.className = 'footer-social nav justify-content-end list-unstyled d-flex';
     var instagramLi = document.createElement('li');
     instagramLi.className = 'ms-3';
     var instagramA = document.createElement('a');

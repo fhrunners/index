@@ -3,7 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Forest Hills Runners routes around Jamaica Plain, the Emerald Necklace, Franklin Park, the Arboretum, and nearby Boston neighborhoods.">
     <meta name="theme-color" content="#092409">
+    <link rel="canonical" href="./">
+    <meta property="og:site_name" content="Forest Hills Runners">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Forest Hills Runners Routes">
+    <meta property="og:description" content="Explore FHR routes around Jamaica Plain, the Emerald Necklace, Franklin Park, the Arboretum, and nearby Boston neighborhoods.">
+    <meta property="og:image" content="../images/hero-background.jpg">
+    <meta property="og:image:alt" content="Forest Hills Runners route map and neighborhood running routes">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@fhrunners">
+    <meta name="twitter:title" content="Forest Hills Runners Routes">
+    <meta name="twitter:description" content="Explore FHR routes around Jamaica Plain, the Emerald Necklace, Franklin Park, the Arboretum, and nearby Boston neighborhoods.">
+    <meta name="twitter:image" content="../images/hero-background.jpg">
+    <meta name="twitter:image:alt" content="Forest Hills Runners route map and neighborhood running routes">
     <link rel="icon" href="../favicon.svg" type="image/svg+xml">
     <link rel="icon" href="../favicon-32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="../favicon-16x16.png" sizes="16x16" type="image/png">
@@ -14,7 +28,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIINfQ+7kYVqWozp0Yj8dN2fCJ93U8ZwKp1U="
         crossorigin="">
-    <link rel="stylesheet" href="../css/styles.css?v=routes-ui-v3">
+    <link rel="stylesheet" href="../css/styles.css?v=routes-ui-v5">
 </head>
 <body>
     <section id="hero" class="text-center mb-5">
@@ -29,8 +43,9 @@
         <section class="routes-content container" aria-label="Interactive running routes">
             <div class="routes-map-intro">
                 <div>
-                    <span class="routes-map-label">Interactive map</span>
-                    <p>Check out our weekly running routes, plus some of our other favorite runs in the area.</p>
+                    <p class="new-runner-kicker">Running routes</p>
+                    <h2>Interactive Map</h2>
+                    <p class="lead">Check out our weekly running routes, plus some of our other favorite runs in the area.</p>
                 </div>
                 <button type="button" id="toggle-route-pois" class="map-toggle-button" aria-pressed="true">
                     <span class="map-toggle-switch" aria-hidden="true"><span></span></span>
@@ -61,7 +76,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
         crossorigin=""></script>
-    <script src="../js/routes.js?v=routes-ui-v3"></script>
+    <script src="../js/routes.js?v=routes-ui-v5"></script>
     <script src="../js/scripts.js"></script>
 </body>
 </html>
