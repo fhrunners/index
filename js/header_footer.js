@@ -50,36 +50,70 @@ document.addEventListener("DOMContentLoaded", function() {
     // Add the right side content
     var rightUl = document.createElement('ul');
     rightUl.className = 'footer-social nav justify-content-end list-unstyled d-flex';
-    var instagramLi = document.createElement('li');
-    instagramLi.className = 'ms-3';
-    var instagramA = document.createElement('a');
-    instagramA.className = 'text-body-secondary';
-    instagramA.href = 'https://www.instagram.com/fhrunners';
-    var instagramImg = document.createElement('img');
-    instagramImg.src = sitePrefix + 'images/instagram_logo.svg';
-    instagramImg.className = 'footer-logo mx-1';
-    instagramImg.alt = 'Instagram';
-    instagramImg.width = 24;
-    instagramImg.height = 24;
-    instagramA.appendChild(instagramImg);
-    instagramLi.appendChild(instagramA);
+    var socialLinks = [
+        {
+            name: 'Instagram',
+            href: 'https://www.instagram.com/fhrunners',
+            icon: 'images/instagram_logo.svg',
+            filtered: true
+        },
+        {
+            name: 'Facebook',
+            href: 'https://www.facebook.com/groups/foresthillsrunners/',
+            icon: 'images/facebook_logo.svg',
+            filtered: true
+        },
+        {
+            name: 'WhatsApp',
+            href: 'https://chat.whatsapp.com/Bu26JYmrzsi58k7I7ByVGM',
+            icon: 'images/whatsapp_logo.png'
+        },
+        {
+            name: 'Strava',
+            href: 'https://www.strava.com/clubs/115650',
+            icon: 'images/strava_logo.webp',
+            itemClass: 'footer-social-item-strava'
+        },
+        {
+            name: 'Garmin Connect',
+            href: 'https://connect.garmin.com/group/4739058',
+            icon: 'images/garmin_connect_logo.png'
+        }
+    ];
 
-    var facebookLi = document.createElement('li');
-    facebookLi.className = 'ms-3';
-    var facebookA = document.createElement('a');
-    facebookA.className = 'text-body-secondary';
-    facebookA.href = 'https://www.facebook.com/groups/foresthillsrunners/';
-    var facebookImg = document.createElement('img');
-    facebookImg.src = sitePrefix + 'images/facebook_logo.svg';
-    facebookImg.className = 'footer-logo mx-1';
-    facebookImg.alt = 'Facebook';
-    facebookImg.width = 24;
-    facebookImg.height = 24;
-    facebookA.appendChild(facebookImg);
-    facebookLi.appendChild(facebookA);
+    socialLinks.forEach(function(social) {
+        var socialLi = document.createElement('li');
+        socialLi.className = social.itemClass || '';
 
-    rightUl.appendChild(instagramLi);
-    rightUl.appendChild(facebookLi);
+        var socialImg = document.createElement('img');
+        socialImg.src = sitePrefix + social.icon;
+        socialImg.className = 'footer-logo' + (social.filtered ? ' footer-logo-filtered' : '');
+        socialImg.alt = '';
+        socialImg.width = 24;
+        socialImg.height = 24;
+        socialImg.setAttribute('aria-hidden', 'true');
+
+        if (social.href) {
+            var socialA = document.createElement('a');
+            socialA.className = 'text-body-secondary';
+            socialA.href = social.href;
+            socialA.target = '_blank';
+            socialA.rel = 'noopener noreferrer';
+            socialA.title = social.name;
+            socialA.setAttribute('aria-label', social.name);
+            socialA.appendChild(socialImg);
+            socialLi.appendChild(socialA);
+        } else {
+            var socialPlaceholder = document.createElement('span');
+            socialPlaceholder.className = 'footer-social-placeholder';
+            socialPlaceholder.title = social.placeholder;
+            socialPlaceholder.setAttribute('aria-label', social.placeholder);
+            socialPlaceholder.appendChild(socialImg);
+            socialLi.appendChild(socialPlaceholder);
+        }
+
+        rightUl.appendChild(socialLi);
+    });
 
     // Append left and right content to the footer
     footer.appendChild(leftDiv);
