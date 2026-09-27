@@ -82,43 +82,44 @@ document.addEventListener("DOMContentLoaded", function() {
             zoom: 13
         });
 
-        const cartoVoyager = L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-            subdomains: "abcd",
+        const usgsTopo = L.tileLayer("https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}", {
+            attribution: 'Tiles courtesy of the <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map">U.S. Geological Survey</a>',
+            maxNativeZoom: 16,
             maxZoom: 20
         });
 
-        const cartoPositron = L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-            subdomains: "abcd",
+        const usgsImageryTopo = L.tileLayer("https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/{z}/{y}/{x}", {
+            attribution: 'Tiles courtesy of the <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map">U.S. Geological Survey</a>',
+            maxNativeZoom: 15,
             maxZoom: 20
         });
 
-        const esriWorldImagery = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
-            attribution: "Tiles &copy; Esri",
-            maxZoom: 19
+        const usgsImagery = L.tileLayer("https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}", {
+            attribution: 'Tiles courtesy of the <a href="https://www.usgs.gov/programs/national-geospatial-program/national-map">U.S. Geological Survey</a>',
+            maxNativeZoom: 16,
+            maxZoom: 20
         });
 
         const baseLayers = [
             {
-                id: "streets",
-                layer: cartoVoyager,
-                name: "Streets"
+                id: "topo",
+                layer: usgsTopo,
+                name: "Topo"
             },
             {
-                id: "light",
-                layer: cartoPositron,
-                name: "Light"
+                id: "imagery-topo",
+                layer: usgsImageryTopo,
+                name: "Satellite + labels"
             },
             {
                 id: "satellite",
-                layer: esriWorldImagery,
+                layer: usgsImagery,
                 name: "Satellite"
             }
         ];
 
-        cartoVoyager.addTo(map);
-        createBaseLayerControl(baseLayers, "streets").addTo(map);
+        usgsTopo.addTo(map);
+        createBaseLayerControl(baseLayers, "topo").addTo(map);
 
         initializeRouteRenderer();
         refreshMapSize();
